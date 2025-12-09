@@ -346,7 +346,7 @@ h6 {
    Section Styles
    ========================================== */
 .section-padding {
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .bg-light {
@@ -355,7 +355,7 @@ h6 {
 
 .section-title {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .section-title h2 {
@@ -404,7 +404,7 @@ h6 {
     left: 50%;
     transform: translateX(-50%);
     width: 3px;
-    height: 100%;
+    height: 90%;
     background: linear-gradient(180deg, var(--color-secondary), var(--color-primary), var(--color-secondary));
     border-radius: 3px;
 }
@@ -1124,7 +1124,7 @@ h6 {
 
 @media (max-width: 767px) {
     .section-padding {
-        padding: 60px 0;
+        padding: 20px 0;
     }
 
     .section-title h2 {
@@ -1666,6 +1666,7 @@ img {
     color: var(--color-primary);
     letter-spacing: 1px;
 }
+
 /* ==========================================
    Shrink Gift Modal (Overrides)
    ========================================== */
@@ -1681,7 +1682,7 @@ img {
 .qr-card {
     padding: 15px !important;
     border-radius: 12px !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
 }
 
 .qr-placeholder {
@@ -1704,5 +1705,58 @@ img {
 
 .account-number {
     font-size: 1rem !important;
+}
+/* ==========================================
+   Global Falling Petals (Full Screen)
+   ========================================== */
+.floating-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    background: #ffc8dd; /* Ensure pink color */
+    border-radius: 50% 0 50% 50%;
+    opacity: 0;
+    animation: falling 15s infinite linear;
+}
+
+/* More random positions and delays */
+.petal:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; }
+.petal:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; }
+.petal:nth-child(3) { left: 25%; animation-duration: 10s; animation-delay: 4s; }
+.petal:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 1s; }
+.petal:nth-child(5) { left: 45%; animation-duration: 16s; animation-delay: 5s; }
+.petal:nth-child(6) { left: 55%; animation-duration: 11s; animation-delay: 3s; }
+.petal:nth-child(7) { left: 65%; animation-duration: 13s; animation-delay: 7s; }
+.petal:nth-child(8) { left: 75%; animation-duration: 15s; animation-delay: 2s; }
+.petal:nth-child(9) { left: 85%; animation-duration: 12s; animation-delay: 6s; }
+
+@keyframes falling {
+    0% {
+        top: -5%;
+        transform: rotate(0deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        top: 105%;
+        transform: rotate(360deg) translateX(50px);
+        opacity: 0;
+    }
 }
 
