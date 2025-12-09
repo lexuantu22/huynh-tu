@@ -31,6 +31,12 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+html,
+body {
+    max-width: 100%;
 }
 
 body {
@@ -1182,4 +1188,32 @@ h6 {
     .event-card {
         padding: 25px;
     }
+}
+
+/* Fix horizontal overflow on mobile */
+.container,
+.row,
+section,
+.timeline,
+.gallery-grid,
+.event-card,
+.couple-card,
+.wish-form-card,
+.wishes-list {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.map-container iframe {
+    max-width: 100%;
 }
