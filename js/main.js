@@ -1,6 +1,6 @@
 /* ==========================================
    Wedding Website - JavaScript
-   Countdown Timer, Wishes Form, Animations
+   Countdown Timer, Wishes Form (Firebase), Animations
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -16,9 +16,19 @@ document.addEventListener('DOMContentLoaded', function () {
     initCountdown();
     initNavbarScroll();
     initSmoothScroll();
-    initWishesForm();
     initGalleryLightbox();
-    loadWishes();
+    initSidebar();
+
+    // Firebase Init Logic
+    if (window.firebaseDB) {
+        console.log('Firebase already ready');
+        initFirebaseWishes();
+    } else {
+        window.addEventListener('firebaseReady', function () {
+            console.log('Firebase ready event');
+            initFirebaseWishes();
+        });
+    }
 });
 
 /* ==========================================
@@ -133,49 +143,74 @@ function initSmoothScroll() {
 }
 
 /* ==========================================
-   Wishes Form
+   Firebase Wishes Logic
    ========================================== */
-function initWishesForm() {
+function initFirebaseWishes() {
+    const db = window.firebaseDB;
+
+    // 1. Handle Form Submission
     const form = document.getElementById('wishForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
 
-        const name = document.getElementById('wishName').value.trim();
-        const message = document.getElementById('wishMessage').value.trim();
+            const name = document.getElementById('wishName').value.trim();
+            const message = document.getElementById('wishMessage').value.trim();
 
-        if (name && message) {
-            saveWish(name, message);
-            form.reset();
-            showToast('Cảm ơn bạn đã gửi lời chúc! 💕');
-        }
-    });
+            if (name && message) {
+                // Disable button and show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Đang gửi...';
+
+                // Add to Firestore
+                db.collection("wishes").add({
+                    name: name,
+                    message: message,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                })
+                    .then(() => {
+                        form.reset();
+                        showToast('Cảm ơn bạn đã gửi lời chúc! 💕');
+                    })
+                    .catch((error) => {
+                        console.error("Error adding wish: ", error);
+                        alert("Lỗi: " + error.message);
+                        showToast('Có lỗi xảy ra: ' + error.message);
+                    })
+                    .finally(() => {
+                        // Reset button
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="bi bi-send"></i> Gửi lời chúc';
+                    });
+            }
+        });
+    }
+
+    // 2. Listen for Realtime Updates
+    db.collection("wishes")
+        .orderBy("createdAt", "desc")
+        .onSnapshot((snapshot) => {
+            const wishes = [];
+            snapshot.forEach((doc) => {
+                wishes.push({ id: doc.id, ...doc.data() });
+            });
+
+            // Update UI
+            updateWishesUI(wishes);
+            updateWishesSidebar(wishes);
+            updateWishesCount(wishes.length);
+        }, (error) => {
+            console.error("Error getting wishes: ", error);
+        });
 }
 
-function saveWish(name, message) {
-    const wishes = getWishes();
-    const newWish = {
-        id: Date.now(),
-        name: name,
-        message: message,
-        time: new Date().toLocaleString('vi-VN')
-    };
-
-    wishes.unshift(newWish); // Add to beginning
-    localStorage.setItem('weddingWishes', JSON.stringify(wishes));
-
-    // Add the new wish to the display
-    addWishToDisplay(newWish, true);
-}
-
-function getWishes() {
-    const stored = localStorage.getItem('weddingWishes');
-    return stored ? JSON.parse(stored) : [];
-}
-
-function loadWishes() {
-    const wishes = getWishes();
+function updateWishesUI(wishes) {
     const container = document.getElementById('wishesContainer');
+
+    // Show loading state initially
+    container.innerHTML = '<div class="text-center py-3"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>';
 
     if (wishes.length === 0) {
         container.innerHTML = `
@@ -188,22 +223,51 @@ function loadWishes() {
     }
 
     container.innerHTML = '';
-    wishes.forEach(wish => addWishToDisplay(wish, false));
+    // Display recent 10 wishes
+    const recentWishes = wishes.slice(0, 10);
+
+    recentWishes.forEach(wish => {
+        const wishCard = createWishCard(wish);
+        container.appendChild(wishCard);
+    });
 }
 
-function addWishToDisplay(wish, animate) {
-    const container = document.getElementById('wishesContainer');
+function updateWishesSidebar(wishes) {
+    const container = document.getElementById('sidebarWishesContainer');
+    container.innerHTML = '';
 
-    // Remove "no wishes" message if it exists
-    const noWishes = container.querySelector('.no-wishes');
-    if (noWishes) {
-        noWishes.remove();
+    if (wishes.length === 0) {
+        container.innerHTML = '<p class="text-center text-muted mt-5">Chưa có lời chúc nào.</p>';
+        return;
     }
 
+    wishes.forEach(wish => {
+        const wishCard = createWishCard(wish);
+        container.appendChild(wishCard);
+    });
+}
+
+function updateWishesCount(count) {
+    const badge = document.getElementById('wishesCount');
+    if (badge) {
+        badge.textContent = count > 99 ? '99+' : count;
+        // Animation effect when count updates
+        badge.style.transform = 'scale(1.2)';
+        setTimeout(() => badge.style.transform = 'scale(1)', 200);
+    }
+}
+
+function createWishCard(wish) {
     const wishCard = document.createElement('div');
     wishCard.className = 'wish-card';
-    if (animate) {
-        wishCard.style.animation = 'fadeIn 0.5s ease';
+
+    // Format date
+    let timeString = '';
+    if (wish.createdAt && wish.createdAt.seconds) {
+        const date = new Date(wish.createdAt.seconds * 1000);
+        timeString = date.toLocaleString('vi-VN');
+    } else {
+        timeString = new Date().toLocaleString('vi-VN');
     }
 
     wishCard.innerHTML = `
@@ -213,22 +277,43 @@ function addWishToDisplay(wish, animate) {
         </div>
         <div class="wish-text">${escapeHtml(wish.message)}</div>
         <div class="wish-time">
-            <i class="bi bi-clock"></i> ${wish.time}
+            <i class="bi bi-clock"></i> ${timeString}
         </div>
     `;
 
-    // Add to beginning for new wishes
-    if (animate) {
-        container.insertBefore(wishCard, container.firstChild);
-    } else {
-        container.appendChild(wishCard);
-    }
+    return wishCard;
 }
 
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+/* ==========================================
+   Sidebar Logic
+   ========================================== */
+function initSidebar() {
+    const floatingBtn = document.getElementById('floatingWishesBtn');
+    const sidebar = document.getElementById('wishesSidebar');
+    const closeBtn = document.getElementById('closeSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent body scroll
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (floatingBtn) floatingBtn.addEventListener('click', openSidebar);
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
 }
 
 /* ==========================================
@@ -288,15 +373,3 @@ function showToast(message) {
         this.remove();
     });
 }
-
-/* ==========================================
-   Parallax Effect (Optional Enhancement)
-   ========================================== */
-window.addEventListener('scroll', function () {
-    const scrolled = window.scrollY;
-    const heroSection = document.querySelector('.hero-section');
-
-    if (heroSection && scrolled < window.innerHeight) {
-        heroSection.style.backgroundPositionY = scrolled * 0.5 + 'px';
-    }
-});

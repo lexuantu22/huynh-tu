@@ -412,8 +412,8 @@ h6 {
 .timeline-item {
     position: relative;
     width: 50%;
-    padding: 20px 50px;
-    margin-bottom: 30px;
+    padding: 15px 50px;
+    margin-bottom: 15px;
 }
 
 .timeline-item:nth-child(odd) {
@@ -615,11 +615,12 @@ h6 {
 }
 
 .event-details p {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     color: var(--color-text-light);
     display: flex;
     align-items: flex-start;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .event-details i {
@@ -1160,6 +1161,15 @@ h6 {
     .wish-form-card,
     .wishes-list {
         padding: 25px;
+        margin-bottom: 20px;
+    }
+
+    .event-card {
+        margin-bottom: 25px;
+    }
+
+    .couple-card {
+        margin-bottom: 30px;
     }
 }
 
@@ -1202,7 +1212,14 @@ section,
 .wishes-list {
     max-width: 100%;
     overflow-x: hidden;
+
 }
+
+.wish-form-card,
+.wishes-list {
+    height: 600px !important;
+}
+
 
 .row {
     margin-left: 0;
@@ -1216,4 +1233,311 @@ img {
 
 .map-container iframe {
     max-width: 100%;
+}
+
+/* ==========================================
+   Floating Wishes Button & Sidebar
+   ========================================== */
+.floating-wishes-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(212, 163, 115, 0.4);
+    z-index: 1000;
+    transition: var(--transition);
+    animation: pulse-btn 2s infinite;
+}
+
+.floating-wishes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(212, 163, 115, 0.6);
+}
+
+@keyframes pulse-btn {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 175, 204, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 175, 204, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 175, 204, 0);
+    }
+}
+
+.wishes-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--color-text);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-white);
+}
+
+/* Sidebar */
+.wishes-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: var(--color-white);
+    z-index: 1001;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.wishes-sidebar.active {
+    right: 0;
+}
+
+.wishes-sidebar-header {
+    padding: 20px 25px;
+    background: var(--color-blush);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.wishes-sidebar-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--color-text);
+}
+
+.wishes-sidebar-header h4 i {
+    color: var(--color-accent);
+    margin-right: 10px;
+}
+
+.wishes-sidebar-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.wishes-sidebar-close:hover {
+    color: var(--color-primary);
+    transform: rotate(90deg);
+}
+
+.wishes-sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.wishes-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(3px);
+}
+
+.wishes-sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Update sidebar wish card styles */
+.wishes-sidebar .wish-card {
+    margin-bottom: 15px;
+    background: var(--color-cream);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+@media (max-width: 575px) {
+    .floating-wishes-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+/* ==========================================
+   Improved Wishes UI (Overrides)
+   ========================================== */
+.wishes-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.wishes-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: 10px;
+}
+
+.wishes-list::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+.wishes-list {
+    padding: 30px !important;
+    max-height: 600px !important;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+#wishesContainer {
+    gap: 20px !important;
+}
+
+.wish-card {
+    background: #fff !important;
+    padding: 20px 25px !important;
+    border-radius: 20px 20px 20px 0 !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03) !important;
+    border: 1px solid rgba(212, 163, 115, 0.15) !important;
+    border-left: 1px solid rgba(212, 163, 115, 0.15) !important;
+    /* Override old border-left */
+    position: relative;
+    margin-left: 10px;
+}
+
+.wish-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-bottom-right-radius: 15px;
+    z-index: 10;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.02);
+}
+
+.wish-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 163, 115, 0.1) !important;
+}
+
+.wish-card .wish-name {
+    font-weight: 700 !important;
+    color: var(--color-text) !important;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+.wish-card .wish-name i {
+    color: var(--color-accent) !important;
+    font-size: 1.2rem;
+}
+
+.wish-text {
+    color: var(--color-text-light) !important;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.wish-time {
+    font-size: 0.75rem !important;
+    color: #aeaeae !important;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* ==========================================
+   Equal Height Fix for Wishes Section
+   ========================================== */
+.wish-form-card,
+.wishes-list {
+    height: 100%;
+}
+
+
+.wishes-list {
+    max-height: 100% !important;
+}
+
+
+/* ==========================================
+   Fixed Header & Scrollable Content for Wishes
+   ========================================== */
+.wishes-list {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    /* Move scroll to inner container */
+}
+
+.wishes-list h4 {
+    flex-shrink: 0 !important;
+    margin-bottom: 20px !important;
+}
+
+#wishesContainer {
+    overflow-y: auto !important;
+    flex: 1 !important;
+    padding-right: 5px;
+    /* Space for scrollbar */
+    min-height: 0;
+    /* Important for flex scrolling */
+}
+
+/* Move custom scrollbar style to wishesContainer */
+.wishes-list::-webkit-scrollbar {
+    display: none;
+    /* Hide parent scrollbar */
+}
+
+#wishesContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+#wishesContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#wishesContainer::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: 10px;
+}
+
+#wishesContainer::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
 }
