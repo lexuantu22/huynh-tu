@@ -1201,18 +1201,9 @@ h6 {
 }
 
 /* Fix horizontal overflow on mobile */
-.container,
-.row,
-section,
-.timeline,
-.gallery-grid,
-.event-card,
-.couple-card,
-.wish-form-card,
-.wishes-list {
-    max-width: 100%;
+body {
     overflow-x: hidden;
-
+    width: 100%;
 }
 
 .wish-form-card,
@@ -1541,3 +1532,177 @@ img {
 #wishesContainer::-webkit-scrollbar-thumb:hover {
     background: var(--color-primary);
 }
+
+/* ==========================================
+   Wedding Gift QR Feature
+   ========================================== */
+.floating-gift-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #e63946, #ffadad);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: gift-shake 2s infinite;
+}
+
+.floating-gift-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6);
+}
+
+@keyframes gift-shake {
+    0% {
+        transform: rotate(0);
+    }
+
+    10% {
+        transform: rotate(-10deg);
+    }
+
+    20% {
+        transform: rotate(10deg);
+    }
+
+    30% {
+        transform: rotate(-10deg);
+    }
+
+    40% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/* Modal Styling */
+.gift-modal-content {
+    border-radius: 20px;
+    border: none;
+    background: #fff url('../images/pattern-bg.png');
+    /* Fallback if no image */
+    background-size: cover;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.gift-title {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.gift-subtitle {
+    font-family: var(--font-script);
+    font-size: 1.5rem;
+    color: var(--color-text-light);
+}
+
+.qr-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.qr-card:hover {
+    transform: translateY(-5px);
+}
+
+.qr-placeholder {
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 10px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #adb5bd;
+    margin: 15px 0;
+}
+
+.qr-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.bank-logo .badge {
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 50px;
+}
+
+.account-name {
+    font-weight: 700;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.account-number {
+    font-family: monospace;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+}
+/* ==========================================
+   Shrink Gift Modal (Overrides)
+   ========================================== */
+.gift-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 5px !important;
+}
+
+.gift-subtitle {
+    font-size: 1.2rem !important;
+}
+
+.qr-card {
+    padding: 15px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+}
+
+.qr-placeholder {
+    height: 140px !important;
+    margin: 10px 0 !important;
+}
+
+.qr-placeholder i {
+    font-size: 2rem !important;
+}
+
+.bank-logo .badge {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
+}
+
+.account-name {
+    font-size: 0.9rem !important;
+}
+
+.account-number {
+    font-size: 1rem !important;
+}
+
