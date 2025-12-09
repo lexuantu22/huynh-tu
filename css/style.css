@@ -144,6 +144,8 @@ h6 {
     font-size: 2rem;
     color: var(--color-primary);
     margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .couple-names {
@@ -1706,6 +1708,7 @@ img {
 .account-number {
     font-size: 1rem !important;
 }
+
 /* ==========================================
    Global Falling Petals (Full Screen)
    ========================================== */
@@ -1724,22 +1727,67 @@ img {
     position: absolute;
     width: 15px;
     height: 20px;
-    background: #ffc8dd; /* Ensure pink color */
+    background: #ffc8dd;
+    /* Ensure pink color */
     border-radius: 50% 0 50% 50%;
     opacity: 0;
     animation: falling 15s infinite linear;
 }
 
 /* More random positions and delays */
-.petal:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; }
-.petal:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; }
-.petal:nth-child(3) { left: 25%; animation-duration: 10s; animation-delay: 4s; }
-.petal:nth-child(4) { left: 35%; animation-duration: 14s; animation-delay: 1s; }
-.petal:nth-child(5) { left: 45%; animation-duration: 16s; animation-delay: 5s; }
-.petal:nth-child(6) { left: 55%; animation-duration: 11s; animation-delay: 3s; }
-.petal:nth-child(7) { left: 65%; animation-duration: 13s; animation-delay: 7s; }
-.petal:nth-child(8) { left: 75%; animation-duration: 15s; animation-delay: 2s; }
-.petal:nth-child(9) { left: 85%; animation-duration: 12s; animation-delay: 6s; }
+.petal:nth-child(1) {
+    left: 5%;
+    animation-duration: 12s;
+    animation-delay: 0s;
+}
+
+.petal:nth-child(2) {
+    left: 15%;
+    animation-duration: 15s;
+    animation-delay: 2s;
+}
+
+.petal:nth-child(3) {
+    left: 25%;
+    animation-duration: 10s;
+    animation-delay: 4s;
+}
+
+.petal:nth-child(4) {
+    left: 35%;
+    animation-duration: 14s;
+    animation-delay: 1s;
+}
+
+.petal:nth-child(5) {
+    left: 45%;
+    animation-duration: 16s;
+    animation-delay: 5s;
+}
+
+.petal:nth-child(6) {
+    left: 55%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+.petal:nth-child(7) {
+    left: 65%;
+    animation-duration: 13s;
+    animation-delay: 7s;
+}
+
+.petal:nth-child(8) {
+    left: 75%;
+    animation-duration: 15s;
+    animation-delay: 2s;
+}
+
+.petal:nth-child(9) {
+    left: 85%;
+    animation-duration: 12s;
+    animation-delay: 6s;
+}
 
 @keyframes falling {
     0% {
@@ -1747,16 +1795,18 @@ img {
         transform: rotate(0deg) translateX(0);
         opacity: 0;
     }
+
     10% {
         opacity: 0.6;
     }
+
     90% {
         opacity: 0.6;
     }
+
     100% {
         top: 105%;
         transform: rotate(360deg) translateX(50px);
         opacity: 0;
     }
 }
-
