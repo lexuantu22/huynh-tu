@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initSmoothScroll();
     initGalleryLightbox();
     initSidebar();
+    initMusicPlayer();
 
     // Firebase Init Logic
     if (window.firebaseDB) {
@@ -373,3 +374,72 @@ function showToast(message) {
         this.remove();
     });
 }
+
+/* ==========================================
+   Music Player Logic
+   ========================================== */
+function initMusicPlayer() {
+    const musicBtn = document.getElementById('musicBtn');
+    const audio = document.getElementById('bgMusic');
+    const icon = musicBtn.querySelector('i');
+
+    if (!audio || !musicBtn) return;
+
+    // Try to autoplay
+    audio.volume = 0.5; // Set reasonable volume
+    const playPromise = audio.play();
+
+    if (playPromise !== undefined) {
+        playPromise.then(_ => {
+            // Autoplay started!
+            musicBtn.classList.add('playing');
+            icon.className = 'bi bi-music-note-beamed';
+        }).catch(error => {
+            // Autoplay was prevented
+            console.log('Autoplay prevented. User interaction required.');
+            musicBtn.classList.add('muted');
+            icon.className = 'bi bi-volume-mute-fill';
+
+            // Inform user
+            showToast('Chạm vào màn hình để bật nhạc bạn nhé! 🎵');
+
+            // Add listener to start music on ANY user interaction
+            const startMusic = () => {
+                audio.play().then(() => {
+                    musicBtn.classList.remove('muted');
+                    musicBtn.classList.add('playing');
+                    icon.className = 'bi bi-music-note-beamed';
+
+                    // Cleanup all listeners
+                    ['click', 'touchstart', 'scroll', 'keydown'].forEach(event => {
+                        document.removeEventListener(event, startMusic);
+                    });
+                }).catch(e => {
+                    // Still blocked or failed, keep listeners
+                    console.log('Autoplay still blocked on interaction:', e);
+                });
+            };
+
+            // Listen for multiple user interaction types
+            ['click', 'touchstart', 'scroll', 'keydown'].forEach(event => {
+                document.addEventListener(event, startMusic, { once: true });
+            });
+        });
+    }
+
+    // Toggle Play/Pause on click
+    musicBtn.addEventListener('click', function () {
+        if (audio.paused) {
+            audio.play();
+            musicBtn.classList.remove('muted');
+            musicBtn.classList.add('playing');
+            icon.className = 'bi bi-music-note-beamed';
+        } else {
+            audio.pause();
+            musicBtn.classList.remove('playing');
+            musicBtn.classList.add('muted');
+            icon.className = 'bi bi-volume-mute-fill';
+        }
+    });
+}
+
