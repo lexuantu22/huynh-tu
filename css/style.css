@@ -116,6 +116,25 @@ h6 {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23d4a373' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
+#navbarNav {
+    background-color: var(--color-blush) !important;
+    /* Green tint */
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--color-secondary);
+}
+
+@media (min-width: 992px) {
+    #navbarNav {
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 0;
+    }
+}
+
 /* ==========================================
    Hero Section
    ========================================== */
