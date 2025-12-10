@@ -357,7 +357,8 @@ h6 {
    Section Styles
    ========================================== */
 .section-padding {
-    padding: 60px 0;
+    padding: 80px 0;
+    /* Increased for better breathing room */
 }
 
 .bg-light {
@@ -370,9 +371,11 @@ h6 {
 }
 
 .section-title h2 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
+    /* Balanced size */
     color: var(--color-text);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .section-title p {
@@ -507,8 +510,10 @@ h6 {
 }
 
 .couple-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px);
+    /* Subtle lift */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
 }
 
 .couple-image {
@@ -598,8 +603,8 @@ h6 {
 }
 
 .event-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .event-icon {
