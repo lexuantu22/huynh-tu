@@ -806,6 +806,20 @@ h6 {
     font-weight: 500;
 }
 
+.qr-image-modal {
+    background: var(--color-blush);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.qr-image-modal img {
+    width: 100%;
+    max-width: 110px;
+    height: auto;
+    border-radius: 8px;
+}
+
 /* ==========================================
    Gallery Section - Horizontal Scroll
    ========================================== */
@@ -1373,13 +1387,13 @@ h6 {
     }
 
     .gallery-item {
-        flex: 0 0 220px;
-        height: 300px;
+        flex: 0 0 320px;
+        height: 450px;
     }
 
     .gallery-item-tall,
     .gallery-item-wide {
-        flex: 0 0 260px;
+        flex: 0 0 350px;
     }
 }
 
@@ -1431,6 +1445,16 @@ h6 {
 
     .timeline-content p {
         font-size: 0.8rem;
+    }
+
+    .gallery-item {
+        flex: 0 0 280px;
+        height: 400px;
+    }
+
+    .gallery-item-tall,
+    .gallery-item-wide {
+        flex: 0 0 300px;
     }
 }
 
@@ -1772,7 +1796,7 @@ img {
    ========================================== */
 .floating-gift-btn {
     position: fixed;
-    bottom: 30px;
+    bottom: 190px;
     right: 30px;
     width: 60px;
     height: 60px;
@@ -2092,7 +2116,7 @@ img {
 
 @media (max-width: 575px) {
     .floating-gift-btn {
-        bottom: 20px;
+        bottom: 140px;
         right: 20px;
         width: 50px;
         height: 50px;
