@@ -385,20 +385,21 @@ function initMusicPlayer() {
 
     if (!audio || !musicBtn) return;
 
+    // Set initial state as playing
+    audio.volume = 0.5;
+    musicBtn.classList.add('playing');
+    icon.className = 'bi bi-music-note-beamed';
+
     // Try to autoplay
-    audio.volume = 0.5; // Set reasonable volume
     const playPromise = audio.play();
 
     if (playPromise !== undefined) {
         playPromise.then(_ => {
-            // Autoplay started!
-            musicBtn.classList.add('playing');
-            icon.className = 'bi bi-music-note-beamed';
+            // Autoplay started! - already set to playing state
+            console.log('Autoplay started successfully');
         }).catch(error => {
-            // Autoplay was prevented
+            // Autoplay was prevented - but keep playing icon
             console.log('Autoplay prevented. User interaction required.');
-            musicBtn.classList.add('muted');
-            icon.className = 'bi bi-volume-mute-fill';
 
             // Inform user
             showToast('Chạm vào màn hình để bật nhạc bạn nhé! 🎵');

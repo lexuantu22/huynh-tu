@@ -1,35 +1,56 @@
 /* ==========================================
-   Wedding Website - Custom Styles
-   Color Palette: Green (#33CC66), White
+   Wedding Website - Modern Romantic Design
+   Color Palette: Champagne, Blush, Sage
    ========================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-    --color-primary: #22a972;
-    /* User Requested Green */
-    --color-primary-light: #66e08f;
-    /* Lighter Green */
-    --color-secondary: #e6f9ec;
-    /* Very Light Green Background */
-    --color-accent: #28a745;
-    /* Darker Green Accent */
-    --color-blush: #f0fff4;
-    /* Mint Cream */
-    --color-cream: #ffffff;
-    /* White */
-    --color-gold: #fbbf24;
-    /* Keep Gold for contrast/accents */
-    --color-gold-light: #fde68a;
-    --color-text: #1e293b;
-    /* Keep Slate text */
-    --color-text-light: #64748b;
+    /* Romantic Pastel Palette */
+    --color-primary: #c4a77d;
+    /* Champagne Gold */
+    --color-primary-light: #e8dcc8;
+    /* Light Champagne */
+    --color-secondary: #f5ebe0;
+    /* Warm Cream */
+    --color-accent: #d4a5a5;
+    /* Dusty Rose */
+    --color-sage: #a8b5a0;
+    /* Sage Green */
+    --color-blush: #fdf8f5;
+    /* Soft Blush */
+    --color-cream: #fffaf7;
+    /* Warm White */
+    --color-nude: #e8d5c4;
+    /* Nude */
+
+    /* Text Colors */
+    --color-text: #3d3d3d;
+    /* Soft Dark */
+    --color-text-light: #7a7a7a;
+    /* Muted Gray */
+    --color-text-heading: #2c2c2c;
+    /* Heading Dark */
     --color-white: #ffffff;
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
+
+    /* Typography */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
     --font-script: 'Great Vibes', cursive;
-    --shadow-soft: 0 10px 40px rgba(51, 204, 102, 0.15);
-    /* Green shadow */
-    --shadow-medium: 0 15px 50px rgba(51, 204, 102, 0.2);
-    --transition: all 0.3s ease;
+
+    /* Shadows - Soft & Elegant */
+    --shadow-soft: 0 4px 20px rgba(196, 167, 125, 0.12);
+    --shadow-medium: 0 8px 32px rgba(196, 167, 125, 0.18);
+    --shadow-large: 0 16px 48px rgba(196, 167, 125, 0.22);
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Spacing */
+    --section-padding: 60px;
+    --section-padding-mobile: 40px;
 }
 
 * {
@@ -41,6 +62,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden;
+    font-size: 15px;
 }
 
 html,
@@ -52,8 +74,10 @@ body {
     font-family: var(--font-body);
     color: var(--color-text);
     background-color: var(--color-cream);
-    line-height: 1.7;
+    line-height: 1.8;
     overflow-x: hidden;
+    font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 h1,
@@ -63,64 +87,75 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
-    font-weight: 600;
+    font-weight: 500;
+    color: var(--color-text-heading);
+    letter-spacing: 0.02em;
 }
 
 /* ==========================================
-   Navigation
+   Navigation - Elegant & Minimal
    ========================================== */
 #mainNav {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 15px 0;
+    background: rgba(255, 250, 247, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 12px 0;
     transition: var(--transition);
     box-shadow: none;
+    border-bottom: 1px solid transparent;
 }
 
 #mainNav.scrolled {
-    padding: 10px 0;
-    box-shadow: var(--shadow-soft);
+    padding: 8px 0;
+    box-shadow: 0 2px 20px rgba(196, 167, 125, 0.1);
+    border-bottom: 1px solid var(--color-secondary);
 }
 
 .navbar-brand {
     font-family: var(--font-script);
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--color-primary) !important;
+    letter-spacing: 0.02em;
 }
 
 .nav-link {
     color: var(--color-text) !important;
-    font-weight: 500;
-    padding: 8px 16px !important;
-    margin: 0 5px;
-    border-radius: 25px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.85rem;
+    padding: 8px 14px !important;
+    margin: 0 3px;
+    border-radius: 20px;
     transition: var(--transition);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
 }
 
 .nav-link:hover,
 .nav-link.active {
     color: var(--color-primary) !important;
-    background: var(--color-blush);
+    background: var(--color-secondary);
 }
 
 .navbar-toggler {
-    border: none;
-    padding: 10px;
+    border: 1px solid var(--color-primary-light);
+    padding: 8px 10px;
+    border-radius: 8px;
 }
 
 .navbar-toggler:focus {
     box-shadow: none;
+    outline: none;
 }
 
 .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23d4a373' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23c4a77d' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 #navbarNav {
-    background-color: var(--color-blush) !important;
-    /* Green tint */
-    border-radius: 15px;
-    padding: 10px;
+    background-color: var(--color-blush);
+    border-radius: 12px;
+    padding: 12px;
     margin-top: 10px;
     box-shadow: var(--shadow-soft);
     border: 1px solid var(--color-secondary);
@@ -132,21 +167,22 @@ h6 {
         box-shadow: none;
         padding: 0;
         margin-top: 0;
+        border: none;
     }
 }
 
 /* ==========================================
-   Hero Section
+   Hero Section - Modern Romantic
    ========================================== */
 .hero-section {
     height: 100vh;
-    min-height: 700px;
+    min-height: 600px;
+    max-height: 900px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(253, 248, 243, 0.3) 0%, rgba(255, 245, 245, 0.2) 50%, rgba(255, 200, 221, 0.15) 100%),
-        url('../images/IMG_7190.jpg') center/cover no-repeat;
+    background: url('../images/05_02 ST4 CamTu_XuanHuynh/HUS08179.jpg') center/cover no-repeat;
     overflow: hidden;
 }
 
@@ -157,23 +193,25 @@ h6 {
     right: 0;
     bottom: 0;
     background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 245, 245, 0.5) 50%,
-            rgba(255, 200, 221, 0.2) 100%);
+            rgba(255, 250, 247, 0.75) 0%,
+            rgba(255, 250, 247, 0.6) 40%,
+            rgba(253, 248, 245, 0.7) 100%);
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
+    padding: 0 20px;
 }
 
 .save-the-date {
-    font-family: var(--font-script);
-    font-size: 2rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
     color: var(--color-primary);
-    margin-bottom: 1rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
 }
 
 .couple-names {
@@ -181,22 +219,23 @@ h6 {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    margin-bottom: 1.5rem;
+    gap: 16px;
+    margin-bottom: 1rem;
 }
 
 .groom-name,
 .bride-name {
     font-family: var(--font-script);
-    font-size: 4rem;
-    color: var(--color-text);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 3.2rem;
+    color: var(--color-text-heading);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .heart-icon {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: var(--color-accent);
-    animation: heartbeat 1.5s ease-in-out infinite;
+    animation: heartbeat 2s ease-in-out infinite;
+    opacity: 0.8;
 }
 
 @keyframes heartbeat {
@@ -207,64 +246,69 @@ h6 {
     }
 
     50% {
-        transform: scale(1.2);
+        transform: scale(1.15);
     }
 }
 
 .wedding-date {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--color-primary);
-    letter-spacing: 8px;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    letter-spacing: 6px;
+    margin-bottom: 1.8rem;
+    font-weight: 400;
 }
 
-/* Countdown */
+/* Countdown - Compact & Elegant */
 .countdown-wrapper {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 16px;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .countdown-item {
-    background: var(--color-white);
-    padding: 25px 30px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-soft);
-    min-width: 100px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    min-width: 70px;
     transition: var(--transition);
+    border: 1px solid rgba(196, 167, 125, 0.15);
 }
 
 .countdown-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
 }
 
 .countdown-number {
     display: block;
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 600;
     color: var(--color-primary);
     line-height: 1;
 }
 
 .countdown-label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.65rem;
     color: var(--color-text-light);
-    margin-top: 8px;
+    margin-top: 6px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
 }
 
 .scroll-down {
     display: inline-block;
     color: var(--color-primary);
-    font-size: 1.5rem;
-    animation: bounce 2s infinite;
+    font-size: 1.2rem;
+    animation: bounce 2.5s infinite;
+    opacity: 0.7;
 }
 
 @keyframes bounce {
@@ -278,11 +322,11 @@ h6 {
     }
 
     40% {
-        transform: translateY(-15px);
+        transform: translateY(-10px);
     }
 
     60% {
-        transform: translateY(-10px);
+        transform: translateY(-6px);
     }
 }
 
@@ -373,62 +417,64 @@ h6 {
 }
 
 /* ==========================================
-   Section Styles
+   Section Styles - Compact & Elegant
    ========================================== */
 .section-padding {
-    padding: 80px 0;
-    /* Increased for better breathing room */
+    padding: var(--section-padding) 0;
 }
 
 .bg-light {
-    background-color: var(--color-blush) !important;
+    background: linear-gradient(180deg, var(--color-blush) 0%, var(--color-cream) 100%);
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 .section-title h2 {
-    font-size: 2.5rem;
-    /* Balanced size */
-    color: var(--color-text);
-    margin-bottom: 15px;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--color-text-heading);
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 .section-title p {
     color: var(--color-text-light);
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 .title-decoration {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 14px;
 }
 
 .title-decoration span {
-    width: 60px;
-    height: 2px;
+    width: 40px;
+    height: 1px;
     background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
 }
 
 .title-decoration i {
     color: var(--color-accent);
-    font-size: 1rem;
+    font-size: 0.75rem;
+    opacity: 0.7;
 }
 
 /* ==========================================
-   Timeline / Love Story
+   Timeline / Love Story - Compact & Elegant
    ========================================== */
 .timeline {
     position: relative;
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 .timeline::before {
@@ -436,17 +482,21 @@ h6 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 3px;
-    height: 90%;
-    background: linear-gradient(180deg, var(--color-secondary), var(--color-primary), var(--color-secondary));
-    border-radius: 3px;
+    width: 1px;
+    height: 95%;
+    background: linear-gradient(180deg,
+            transparent 0%,
+            var(--color-primary-light) 10%,
+            var(--color-primary) 50%,
+            var(--color-primary-light) 90%,
+            transparent 100%);
 }
 
 .timeline-item {
     position: relative;
     width: 50%;
-    padding: 15px 50px;
-    margin-bottom: 15px;
+    padding: 10px 40px;
+    margin-bottom: 8px;
 }
 
 .timeline-item:nth-child(odd) {
@@ -461,188 +511,205 @@ h6 {
 
 .timeline-icon {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background: var(--color-white);
-    border: 3px solid var(--color-primary);
+    width: 36px;
+    height: 36px;
+    background: var(--color-cream);
+    border: 2px solid var(--color-primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1;
     color: var(--color-primary);
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.timeline-icon:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
 }
 
 .timeline-item:nth-child(odd) .timeline-icon {
-    right: -25px;
+    right: -18px;
 }
 
 .timeline-item:nth-child(even) .timeline-icon {
-    left: -25px;
+    left: -18px;
 }
 
 .timeline-content {
     background: var(--color-white);
-    padding: 25px 30px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-soft);
+    padding: 18px 22px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-card);
     transition: var(--transition);
+    border: 1px solid rgba(196, 167, 125, 0.08);
 }
 
 .timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
 }
 
 .timeline-date {
     display: inline-block;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-gold));
+    background: var(--color-primary);
     color: var(--color-white);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 .timeline-content h4 {
-    color: var(--color-text);
-    margin-bottom: 10px;
+    color: var(--color-text-heading);
+    margin-bottom: 6px;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .timeline-content p {
     color: var(--color-text-light);
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
 }
 
 /* ==========================================
-   Couple Section
+   Couple Section - Elegant & Refined
    ========================================== */
 .couple-card {
     text-align: center;
-    padding: 40px 30px;
+    padding: 28px 24px;
     background: var(--color-white);
-    border-radius: 30px;
-    box-shadow: var(--shadow-soft);
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
     transition: var(--transition);
+    border: 1px solid rgba(196, 167, 125, 0.08);
 }
 
 .couple-card:hover {
-    transform: translateY(-5px);
-    /* Subtle lift */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    /* Soft shadow */
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
 }
 
 .couple-image {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto 25px;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 18px;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid var(--color-secondary);
-    box-shadow: 0 10px 30px rgba(212, 163, 115, 0.2);
+    border: 3px solid var(--color-primary-light);
+    box-shadow: 0 8px 24px rgba(196, 167, 125, 0.15);
+    transition: var(--transition);
 }
 
 .couple-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .couple-card:hover .couple-image img {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .couple-info h3 {
     font-family: var(--font-script);
-    font-size: 2.2rem;
-    color: var(--color-text);
-    margin-bottom: 5px;
+    font-size: 1.8rem;
+    color: var(--color-text-heading);
+    margin-bottom: 4px;
 }
 
 .couple-role {
     color: var(--color-primary);
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.85rem;
-    margin-bottom: 15px;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+    margin-bottom: 12px;
 }
 
 .couple-desc {
     color: var(--color-text-light);
-    font-size: 0.95rem;
-    line-height: 1.8;
+    font-size: 0.85rem;
+    line-height: 1.7;
 }
 
 .couple-social {
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .couple-social a {
     display: inline-flex;
-    width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: var(--color-blush);
+    background: var(--color-secondary);
     color: var(--color-primary);
     align-items: center;
     justify-content: center;
-    margin: 0 5px;
+    margin: 0 4px;
     transition: var(--transition);
+    font-size: 0.85rem;
 }
 
 .couple-social a:hover {
     background: var(--color-primary);
     color: var(--color-white);
+    transform: translateY(-2px);
 }
 
 .couple-heart {
-    font-size: 3rem;
+    font-size: 2rem;
     color: var(--color-accent);
-    animation: heartbeat 1.5s ease-in-out infinite;
-    margin: 40px 0;
+    animation: heartbeat 2s ease-in-out infinite;
+    margin: 24px 0;
+    opacity: 0.8;
 }
 
 /* ==========================================
-   Event Section
+   Event Section - Clean & Minimal
    ========================================== */
 .event-card {
     background: var(--color-white);
-    padding: 40px;
-    border-radius: 25px;
-    box-shadow: var(--shadow-soft);
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
     text-align: center;
     height: 100%;
     transition: var(--transition);
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(196, 167, 125, 0.08);
 }
 
 .event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
 }
 
 .event-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 25px;
-    font-size: 2rem;
+    margin: 0 auto 18px;
+    font-size: 1.3rem;
     color: var(--color-white);
 }
 
 .event-card h4 {
-    font-size: 1.5rem;
-    color: var(--color-text);
-    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: var(--color-text-heading);
+    margin-bottom: 14px;
+    font-weight: 500;
 }
 
 .event-details {
@@ -650,39 +717,42 @@ h6 {
 }
 
 .event-details p {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     color: var(--color-text-light);
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
+    font-size: 0.85rem;
 }
 
 .event-details i {
     color: var(--color-primary);
-    font-size: 1.1rem;
-    margin-top: 3px;
+    font-size: 0.9rem;
+    margin-top: 2px;
 }
 
 .map-wrapper {
-    margin-top: 50px;
+    margin-top: 32px;
 }
 
 .map-title {
     text-align: center;
-    color: var(--color-text);
-    margin-bottom: 25px;
+    color: var(--color-text-heading);
+    margin-bottom: 18px;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .map-title i {
     color: var(--color-primary);
-    margin-right: 10px;
+    margin-right: 8px;
 }
 
 .map-container {
-    border-radius: 25px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
+    box-shadow: var(--shadow-card);
 }
 
 .map-container iframe {
@@ -690,39 +760,114 @@ h6 {
 }
 
 /* ==========================================
-   Gallery Section
+   QR Code Section
+   ========================================== */
+.qr-card {
+    background: var(--color-white);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(196, 167, 125, 0.1);
+}
+
+.qr-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+}
+
+.qr-image {
+    background: var(--color-blush);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 14px;
+}
+
+.qr-image img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.qr-info h5 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-text-heading);
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.qr-info p {
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    margin: 0;
+    font-weight: 500;
+}
+
+/* ==========================================
+   Gallery Section - Horizontal Scroll
    ========================================== */
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 24px 0 40px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+
+.gallery-grid:active {
+    cursor: grabbing;
+}
+
+.gallery-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.gallery-grid::-webkit-scrollbar-track {
+    background: var(--color-secondary);
+    border-radius: 10px;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: 10px;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
 }
 
 .gallery-item {
+    flex: 0 0 380px;
+    height: 500px;
     position: relative;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    aspect-ratio: 1;
+    scroll-snap-align: center;
+    box-shadow: 0 8px 32px rgba(196, 167, 125, 0.2);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.4s ease;
 }
 
-.gallery-item-tall {
-    grid-row: span 2;
-    aspect-ratio: auto;
-}
-
+.gallery-item-tall,
 .gallery-item-wide {
-    grid-column: span 2;
-    aspect-ratio: 2/1;
+    flex: 0 0 450px;
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .gallery-overlay {
@@ -731,31 +876,32 @@ h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(212, 163, 115, 0.7), rgba(255, 175, 204, 0.7));
+    background: linear-gradient(135deg,
+            rgba(196, 167, 125, 0.85),
+            rgba(212, 165, 165, 0.75));
+    backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: var(--transition);
+    transition: opacity 0.4s ease;
 }
 
 .gallery-overlay i {
     color: var(--color-white);
-    font-size: 2rem;
-    transform: scale(0.5);
-    transition: var(--transition);
+    font-size: 2.5rem;
+    transform: scale(0.5) rotate(-10deg);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(196, 167, 125, 0.25);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-.gallery-item:hover .gallery-overlay {
-    opacity: 1;
-}
-
-.gallery-item:hover .gallery-overlay i {
-    transform: scale(1);
+    transform: scale(1.05);
 }
 
 /* ==========================================
@@ -799,23 +945,29 @@ h6 {
 }
 
 .btn-primary-custom {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-gold));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     border: none;
     color: var(--color-white);
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
     transition: var(--transition);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn-primary-custom:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
+    box-shadow: 0 8px 20px rgba(196, 167, 125, 0.35);
     color: var(--color-white);
 }
 
 .btn-primary-custom i {
-    margin-right: 8px;
+    font-size: 0.85rem;
 }
 
 .wishes-list {
@@ -1145,72 +1297,33 @@ h6 {
         margin: 20px 0;
     }
 
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .gallery-item {
+        flex: 0 0 260px;
+        height: 350px;
     }
 
     .gallery-item-tall,
     .gallery-item-wide {
-        grid-row: auto;
-        grid-column: auto;
-        aspect-ratio: 1;
+        flex: 0 0 300px;
     }
 }
 
 @media (max-width: 767px) {
+    :root {
+        --section-padding: 40px;
+    }
+
     .section-padding {
-        padding: 20px 0;
+        padding: var(--section-padding-mobile) 0;
     }
 
     .section-title h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .groom-name,
     .bride-name {
-        font-size: 2.5rem;
-    }
-
-    .countdown-wrapper {
-        gap: 15px;
-    }
-
-    .countdown-item {
-        padding: 20px 25px;
-        min-width: 80px;
-    }
-
-    .countdown-number {
-        font-size: 1.8rem;
-    }
-
-    .couple-image {
-        width: 150px;
-        height: 150px;
-    }
-
-    .thankyou-content h2 {
-        font-size: 3rem;
-    }
-
-    .wish-form-card,
-    .wishes-list {
-        padding: 25px;
-        margin-bottom: 20px;
-    }
-
-    .event-card {
-        margin-bottom: 25px;
-    }
-
-    .couple-card {
-        margin-bottom: 30px;
-    }
-}
-
-@media (max-width: 575px) {
-    .gallery-grid {
-        grid-template-columns: 1fr;
+        font-size: 2.2rem;
     }
 
     .countdown-wrapper {
@@ -1218,20 +1331,106 @@ h6 {
     }
 
     .countdown-item {
-        padding: 15px 20px;
-        min-width: 70px;
+        padding: 12px 16px;
+        min-width: 60px;
     }
 
     .countdown-number {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .countdown-label {
-        font-size: 0.75rem;
+        font-size: 0.55rem;
+    }
+
+    .couple-image {
+        width: 130px;
+        height: 130px;
+    }
+
+    .couple-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .thankyou-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .wish-form-card,
+    .wishes-list {
+        padding: 20px;
+        margin-bottom: 16px;
     }
 
     .event-card {
-        padding: 25px;
+        padding: 20px;
+        margin-bottom: 16px;
+    }
+
+    .couple-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .gallery-item {
+        flex: 0 0 220px;
+        height: 300px;
+    }
+
+    .gallery-item-tall,
+    .gallery-item-wide {
+        flex: 0 0 260px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .groom-name,
+    .bride-name {
+        font-size: 1.8rem;
+    }
+
+    .save-the-date {
+        font-size: 0.65rem;
+    }
+
+    .wedding-date {
+        font-size: 0.85rem;
+        letter-spacing: 4px;
+    }
+
+    .countdown-wrapper {
+        gap: 8px;
+    }
+
+    .countdown-item {
+        padding: 10px 12px;
+        min-width: 55px;
+    }
+
+    .countdown-number {
+        font-size: 1.2rem;
+    }
+
+    .countdown-label {
+        font-size: 0.5rem;
+        letter-spacing: 1px;
+    }
+
+    .event-card {
+        padding: 18px;
+    }
+
+    .timeline-content {
+        padding: 14px 18px;
+    }
+
+    .timeline-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .timeline-content p {
+        font-size: 0.8rem;
     }
 }
 
