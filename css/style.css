@@ -1984,8 +1984,8 @@ img {
     position: absolute;
     width: 15px;
     height: 20px;
-    background: #d1fae5;
-    /* Very Light Emerald */
+    background: #ffafcc;
+    /* Pastel Pink */
     border-radius: 50% 0 50% 50%;
     opacity: 0;
     animation: falling 15s infinite linear;
