@@ -182,7 +182,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('../images/05_02 ST4 CamTu_XuanHuynh/HUS06715.jpg') center/cover no-repeat;
+    background: #fffaf7 url("../images/05_02%20ST4%20CamTu_XuanHuynh/HUS06715.jpg") center 15%/cover no-repeat;
     overflow: hidden;
 }
 
@@ -252,11 +252,12 @@ h6 {
 
 .wedding-date {
     font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--color-text);
-    letter-spacing: 6px;
-    margin-bottom: 1.8rem;
-    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    letter-spacing: 8px;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Countdown - Compact & Elegant */
