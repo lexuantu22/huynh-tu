@@ -252,12 +252,12 @@ h6 {
 
 .wedding-date {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 2.8rem;
     color: var(--color-primary);
-    letter-spacing: 8px;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    letter-spacing: 10px;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Countdown - Compact & Elegant */
@@ -1410,8 +1410,9 @@ h6 {
     }
 
     .wedding-date {
-        font-size: 0.85rem;
-        letter-spacing: 4px;
+        font-size: 1.8rem;
+        letter-spacing: 6px;
+        font-weight: 700;
     }
 
     .countdown-wrapper {
@@ -1926,44 +1927,29 @@ img {
     letter-spacing: 1px;
 }
 
-/* ==========================================
-   Shrink Gift Modal (Overrides)
-   ========================================== */
-.gift-title {
-    font-size: 1.8rem !important;
-    margin-bottom: 5px !important;
-}
+/* Resizing Gift Modal for Mobile */
+@media (max-width: 767px) {
+    .gift-title {
+        font-size: 1.8rem !important;
+        margin-bottom: 5px !important;
+    }
 
-.gift-subtitle {
-    font-size: 1.2rem !important;
-}
+    .gift-subtitle {
+        font-size: 1.2rem !important;
+    }
 
-.qr-card {
-    padding: 15px !important;
-    border-radius: 12px !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
-}
+    .qr-card {
+        padding: 15px !important;
+        border-radius: 12px !important;
+    }
 
-.qr-placeholder {
-    height: 140px !important;
-    margin: 10px 0 !important;
-}
+    .account-name {
+        font-size: 0.9rem !important;
+    }
 
-.qr-placeholder i {
-    font-size: 2rem !important;
-}
-
-.bank-logo .badge {
-    font-size: 0.8rem !important;
-    padding: 6px 12px !important;
-}
-
-.account-name {
-    font-size: 0.9rem !important;
-}
-
-.account-number {
-    font-size: 1rem !important;
+    .account-number {
+        font-size: 1rem !important;
+    }
 }
 
 /* ==========================================
